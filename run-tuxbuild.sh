@@ -3,9 +3,10 @@
 if [[ -f ${HOME}/.ragnar.rc ]]; then
     source ${HOME}/.ragnar.rc
 else
-    TOP=${TOP:-"${HOME}/ragnar-artifacts"}
+    TOP=${TOP:-"${HOME}"}
 fi
-mkdir -p ${TOP}/randconfig-artifacts
+TOP=${TOP}/randconfig-artifacts
+mkdir -p ${TOP}
 
 usage() {
 	echo -e "$0's help text"
@@ -32,7 +33,7 @@ while getopts "b:f:r:h" arg; do
 	esac
 done
 
-REPOSITORY=${REPOSITORY:-"https://git.linaro.org/people/anders.roxell/linux.git"}
+REPOSITORY=${REPOSITORY:-"'https://git.linaro.org/people/anders.roxell/linux.git'"}
 
 if [[ -z ${BRANCH} ]]; then
 	echo "ERROR: forgot to set branch!"
@@ -47,11 +48,14 @@ if [[ -z ${FILE} ]]; then
 fi
 
 OUTPUTDIR=${TOP}/$(date +"%Y%m%d-%H")
-logfilename=output-${$(basename ${FILE})%.yaml}.log
+mkdir -p ${OUTPUTDIR}
+logfilename=$(echo $(basename ${FILE})|awk -F. '{print $1}').log
 tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic 2>&1 | tee ${OUTPUTDIR}/${logfilename}
-for build in $(cat ${logfilename}); do
-	url=$(echo ${build} |grep -P '.*Pass \(\d warnings\):' |awk -F' ' '{print $NF}')
-	builddir=$(echo ${build} |sed -e 's|.*tuxbuild.com/||')
+
+for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \(\d warnings\):' |awk -F' ' '{print $NF}'); do
+	echo ${url}
+	builddir=$(echo ${url} |sed -e 's|.*tuxbuild.com/||')
 	mkdir ${OUTPUTDIR}/${builddir}
 	curl -sSOL ${url}/build.log
+	curl -sSOL ${url}/kernel.config
 done
