@@ -33,7 +33,7 @@ while getopts "b:f:r:h" arg; do
 	esac
 done
 
-REPOSITORY=${REPOSITORY:-"'https://git.linaro.org/people/anders.roxell/linux.git'"}
+REPOSITORY=${REPOSITORY:-"https://git.linaro.org/people/anders.roxell/linux.git"}
 
 if [[ -z ${BRANCH} ]]; then
 	echo "ERROR: forgot to set branch!"
@@ -52,10 +52,14 @@ mkdir -p ${OUTPUTDIR}
 logfilename=$(echo $(basename ${FILE})|awk -F. '{print $1}').log
 tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic 2>&1 | tee ${OUTPUTDIR}/${logfilename}
 
-for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \(\d warnings\):' |awk -F' ' '{print $NF}'); do
+for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \([1-9]\d* warning(|s)\):' |awk -F' ' '{print $NF}'); do
 	echo ${url}
 	builddir=$(echo ${url} |sed -e 's|.*tuxbuild.com/||')
-	mkdir ${OUTPUTDIR}/${builddir}
-	curl -sSOL ${url}/build.log
-	curl -sSOL ${url}/kernel.config
+	mkdir -p ${OUTPUTDIR}/${builddir}
+	cd ${OUTPUTDIR}/${builddir}
+	echo curl -sSOL ${url}build.log
+	curl -sSOL ${url}build.log
+	echo curl -sSOL ${url}kernel.config
+	curl -sSOL ${url}kernel.config
+	cd -
 done
