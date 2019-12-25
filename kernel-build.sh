@@ -33,6 +33,13 @@ find_artifact_builds() {
 	popd > /dev/null 2>&1
 }
 
+find_file () {
+	pushd ${TOP}/ > /dev/null 2>&1
+	file_path=$(grep ": warning: " ${1} |sed -e 's|\.\.\/||g'|awk -F':' '{print $1}')
+	echo ${file_path}|tr " " "\n" |sed 's|^|  |'
+	popd > /dev/null 2>&1
+}
+
 while getopts "f:h" arg; do
 	case $arg in
 		f)
@@ -46,7 +53,7 @@ while getopts "f:h" arg; do
 done
 
 if [[ -z $list_staging ]]; then
-	echo "Listing staging build strings:"
+	echo "Listing artifact builds that reported a warning(s):"
 	find_artifact_builds
 	num_builds=$(find_artifact_builds|wc -l)
 	if [[ $num_builds -eq 0 ]]; then
@@ -55,21 +62,31 @@ if [[ -z $list_staging ]]; then
 		artifact_buildstr=$(find_artifact_builds | sed 's/ //g')
 	else
 		echo
-		echo "Copy/paste what build string you want to"
-		echo "deploy, followed by [ENTER]:"
+		echo "Copy/paste what artifact build dir you want to"
+		echo "build, followed by [ENTER]:"
 		read artifact_buildstr
 	fi
-	fi
+fi
 
 source ${TOP}/${artifact_buildstr}/build_configuration.conf
 
-if [[ -z ${stuff_to_build} ]]; then
-	if [[ ${ARCH} == "x86" ]]; then
-		stuff_to_build=bzImage
-	elif [[ ${ARCH} == "arm64" ]]; then
-		stuff_to_build=Image
+if [[ -z $stuff_to_build ]]; then
+	echo "Listing files that contains warning(s):"
+	find_file ${artifact_buildstr}/build.log
+	num_builds=$(find_file ${artifact_buildstr}/build.log|wc -l)
+	if [[ $num_builds -eq 0 ]]; then
+		exit 0
+	elif [[ $num_builds -eq 1 ]]; then
+		stuff_to_build=$(find_file ${artifact_buildstr}/build.log | sed 's/ //g')
+	else
+		echo
+		echo "Copy/paste the file you want to"
+		echo "build, followed by [ENTER]:"
+		read stuff_to_build
 	fi
+	stuff_to_build=$(echo ${stuff_to_build} |awk -F. '{print $1}').o
 fi
+
 
 obj_dir="obj-randconfig-${ARCH}-$(git describe|awk -F'-' '{print $1"-"$2}')"
 
