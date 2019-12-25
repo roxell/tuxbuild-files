@@ -5,7 +5,7 @@ if [[ -f ${HOME}/.ragnar.rc ]]; then
 else
     TOP=${TOP:-"${HOME}"}
 fi
-TOP=${TOP}/randconfig-artifacts
+TOP=${TOP}/tb-artifacts
 mkdir -p ${TOP}
 
 usage() {
@@ -33,7 +33,7 @@ while getopts "b:f:r:h" arg; do
 	esac
 done
 
-REPOSITORY=${REPOSITORY:-"https://git.linaro.org/people/anders.roxell/linux.git"}
+REPOSITORY=${REPOSITORY:-"https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git"}
 
 if [[ -z ${BRANCH} ]]; then
 	echo "ERROR: forgot to set branch!"

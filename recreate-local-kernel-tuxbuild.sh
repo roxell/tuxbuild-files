@@ -5,7 +5,7 @@ if [[ -f ${HOME}/.ragnar.rc ]]; then
 else
 	TOP=${TOP:-"${HOME}"}
 fi
-TOP=${TOP}/randconfig-artifacts
+TOP=${TOP}/tb-artifacts
 
 mypwd=$(pwd)
 
