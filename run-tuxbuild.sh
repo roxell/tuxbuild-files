@@ -50,7 +50,8 @@ fi
 OUTPUTDIR=${TOP}/$(date +"%Y%m%d-%H")
 mkdir -p ${OUTPUTDIR}
 logfilename=$(echo $(basename ${FILE})|awk -F. '{print $1}').log
-tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic 2>&1 | tee ${OUTPUTDIR}/${logfilename}
+echo tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic | tee ${OUTPUTDIR}/${logfilename}
+tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic 2>&1 | tee -a ${OUTPUTDIR}/${logfilename}
 
 for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \([1-9]\d* warning(|s)\):' |awk -F' ' '{print $NF}'); do
 	echo ${url}
