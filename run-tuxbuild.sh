@@ -61,5 +61,6 @@ for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \([1-9]\d* warning
 	curl -sSOL ${url}build.log
 	echo curl -sSOL ${url}kernel.config
 	curl -sSOL ${url}kernel.config
+	sed '/KCONFIG_SEED=/,$!d' build.log |sed '/^scripts/,$d'|grep -v "cd /linux">build_configuration.conf
 	cd -
 done
