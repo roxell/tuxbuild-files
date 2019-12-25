@@ -7,6 +7,8 @@ else
 fi
 TOP=${TOP}/randconfig-artifacts
 
+mypwd=$(pwd)
+
 usage() {
 	echo -e "$(basename $0)'s help text"
 	echo -e "   -f file to build, if not provided we will build the Image file"
@@ -68,6 +70,8 @@ if [[ -z $list_staging ]]; then
 	fi
 fi
 
+cd ${mypwd}
+
 source ${TOP}/${artifact_buildstr}/build_configuration.conf
 
 if [[ -z $stuff_to_build ]]; then
@@ -108,3 +112,4 @@ echo "building ${obj_dir}"
 echo
 echo make ARCH=${ARCH} HOSTCC=${HOSTCC} -skj$(getconf _NPROCESSORS_ONLN) O=${obj_dir} ${cross_build} INSTALL_MOD_PATH=${obj_dir}/modules_install ${stuff_to_build}
 make ARCH=${ARCH} HOSTCC=${HOSTCC} -skj$(getconf _NPROCESSORS_ONLN) O=${obj_dir} ${cross_build} INSTALL_MOD_PATH=${obj_dir}/modules_install ${stuff_to_build}
+cd -
