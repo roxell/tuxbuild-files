@@ -21,3 +21,23 @@ sets:
       - {target_arch: arm64, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
       - {target_arch: arm64, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
       - {target_arch: arm64, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
+      - {target_arch: x86, toolchain: gcc-8, defconfig: "randconfig CONFIG_COMPILE_TEST=y CONFIG_PROFILE_ALL_BRANCHES=n CONFIG_PREVENT_FIRMWARE_BUILD=y CONFIG_STANDALONE=y"}
