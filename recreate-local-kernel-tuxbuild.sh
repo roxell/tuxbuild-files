@@ -30,7 +30,7 @@ set_config_frag() {
 
 find_artifact_builds() {
 	pushd ${TOP}/ > /dev/null 2>&1
-	tmp=$(find . -maxdepth 2 -type d|sed 's|^./||g'|awk -F/ '$2')
+	tmp=$(find . -maxdepth 2 -type d|sed 's|^./||g'|awk -F/ '$2'|sort)
 	echo $tmp|tr " " "\n"|sed 's|^|  |'
 	popd > /dev/null 2>&1
 }
