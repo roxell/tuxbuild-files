@@ -49,13 +49,15 @@ fi
 
 OUTPUTDIR=${TOP}/$(date +"%Y%m%d-%H")
 mkdir -p ${OUTPUTDIR}
+tb_json_artifact="${OUTPUTDIR}/build-artifact.json"
 logfilename=$(echo $(basename ${FILE})|awk -F. '{print $1}').log
-echo tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic | tee ${OUTPUTDIR}/${logfilename}
-tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic 2>&1 | tee -a ${OUTPUTDIR}/${logfilename}
+echo tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic --json-out ${tb_json_artifact} | tee ${OUTPUTDIR}/${logfilename}
+tuxbuild build-set --git-repo ${REPOSITORY} --git-ref ${BRANCH} --tux-config ${FILE} --set-name basic --json-out ${tb_json_artifact} 2>&1 | tee -a ${OUTPUTDIR}/${logfilename}
 
-for url in $(cat ${OUTPUTDIR}/${logfilename} |grep -P '.*Pass \([1-9]\d* warning(|s)\):' |awk -F' ' '{print $NF}'); do
+for url in $(cat ${tb_json_artifact}| jq '.[] | select(.warnings_count != 0) | .download_url'); do
+	url=$(echo ${url}|sed 's|"||g')
 	echo ${url}
-	builddir=$(echo ${url} |sed -e 's|.*tuxbuild.com/||')
+	builddir=$(echo ${url}| awk -F '/' '{print $(NF-1)}')
 	mkdir -p ${OUTPUTDIR}/${builddir}
 	cd ${OUTPUTDIR}/${builddir}
 	echo curl -sSOL ${url}build.log
