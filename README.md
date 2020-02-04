@@ -9,6 +9,7 @@ A project that wraps tuxbuild to build kernel and rebuild them locally if needed
  - gcc-aarch64-linux-gnu
  - gcc-arm-linux-gnueabihf
  - gcc-x86-64-linux-gnu
+ - jq
 
 ### Setup symlinks
 ```
