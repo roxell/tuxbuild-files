@@ -1,0 +1,5 @@
+sets:
+  - name: basic
+    builds:
+      - {target_arch: arm64, toolchain: gcc-9, kconfig: "defconfig"}
+      - {target_arch: x86, toolchain: gcc-9, kconfig: "defconfig"}
