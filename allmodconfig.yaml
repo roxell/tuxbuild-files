@@ -1,5 +1,7 @@
 sets:
   - name: basic
     builds:
+      - {target_arch: arm64, toolchain: gcc-8, kconfig: ["allmodconfig", "qemu-gdb.config"], kconfig_allconfig: "arch/arm64/configs/defconfig"}
       - {target_arch: arm64, toolchain: gcc-9, kconfig: ["allmodconfig", "qemu-gdb.config"], kconfig_allconfig: "arch/arm64/configs/defconfig"}
-      - {target_arch: x86, toolchain: gcc-9, kconfig: ["allmodconfig", "qemu-gdb.config"], kconfig_allconfig: "arch/x86/configs/x86_64_defconfig"}
+      - {target_arch: x86, toolchain: gcc-8, kconfig: ["allmodconfig", "qemu-gdb.config", "kvm_guest.config"], kconfig_allconfig: "arch/x86/configs/x86_64_defconfig"}
+      - {target_arch: x86, toolchain: gcc-9, kconfig: ["allmodconfig", "qemu-gdb.config", "kvm_guest.config"], kconfig_allconfig: "arch/x86/configs/x86_64_defconfig"}
