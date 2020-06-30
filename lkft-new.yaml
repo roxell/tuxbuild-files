@@ -1,0 +1,7 @@
+sets:
+  - name: basic
+    builds:
+      - {target_arch: arm, toolchain: gcc-9, kconfig: ["defconfig", "https://raw.githubusercontent.com/roxell/kernel-fragments/master/arm.config", "CONFIG_POSIX_MQUEUE=y"]}
+      - {target_arch: arm64, toolchain: gcc-9, kconfig: ["defconfig", "https://raw.githubusercontent.com/roxell/kernel-fragments/master/arm64.config"]}
+      - {target_arch: i386, toolchain: gcc-9, kconfig: ["defconfig", "https://raw.githubusercontent.com/roxell/kernel-fragments/master/i386.config", "CONFIG_IGB=y"]}
+      - {target_arch: x86, toolchain: gcc-9, kconfig: ["defconfig", "https://raw.githubusercontent.com/roxell/kernel-fragments/master/x86.config", "CONFIG_IGB=y", "CONFIG_SMP=n"]}
